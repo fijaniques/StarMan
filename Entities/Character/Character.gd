@@ -11,15 +11,14 @@ var velocity = Vector2.ZERO
 
 #FUEL
 var fuel : float
-var maxFuel : float = 100
+var maxFuel : float = 50
 
 func _ready():
 	fuel = maxFuel
 
 func _physics_process(delta : float) -> void:
-	print(fuel)
 	_motion(delta)
-	_fly(delta)
+	_fly()
 
 func _motion(delta : float):
 	var hDir = Input.get_action_strength("d") - Input.get_action_strength("a")
@@ -31,9 +30,9 @@ func _motion(delta : float):
 	
 	velocity = move_and_slide(velocity, UP)
 
-func _fly(delta):
+func _fly():
 	if(Input.is_action_pressed("w") and fuel > 0):
-		fuel -= 10 * delta
+		fuel -= 0.2
 		if(velocity.y > flySpeed):
 			velocity.y += flyForce
 		else:

@@ -2,7 +2,7 @@ extends Area2D
 
 onready var character = get_parent().get_node("Character")
 
-var totalFuel : float = 100
+var totalFuel : float = 30
 var fuel: float
 
 var charIn : bool = false
@@ -21,7 +21,7 @@ func _on_FuelPump_area_exited(area):
 
 func _filling():
 	if(charIn and character.is_on_floor()):
-		if(character.fuel < character.maxFuel):
+		if(character.fuel < character.maxFuel and fuel > 0):
+			print(fuel)
 			character.fuel += 0.5
-		else:
-			character.fuel = character.maxFuel
+			fuel -= 0.5
