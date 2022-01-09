@@ -117,6 +117,12 @@ shift={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Character"
+2d_physics/layer_2="FuelPump"
+2d_physics/layer_3="Tiles"
+
 [physics]
 
 common/enable_pause_aware_picking=true

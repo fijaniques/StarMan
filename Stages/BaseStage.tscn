@@ -1,3 +1,18 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Entities/Objects/FuePump/FuelPump.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Entities/TileSets/Tiles.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Entities/Character/Character.tscn" type="PackedScene" id=3]
 
 [node name="BaseStage" type="Node2D"]
+
+[node name="Tiles" parent="." instance=ExtResource( 2 )]
+
+[node name="FuelPump" parent="." instance=ExtResource( 1 )]
+position = Vector2( 104, 480 )
+
+[node name="FuelPump2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 376, 480 )
+
+[node name="Character" parent="." instance=ExtResource( 3 )]
+position = Vector2( 184, 400 )
