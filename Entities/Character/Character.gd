@@ -11,8 +11,6 @@ var velocity = Vector2.ZERO
 func _physics_process(delta : float) -> void:
 	_motion(delta)
 	_fly()
-	
-	$CanvasLayer/Text.text = str(velocity.y)
 
 func _motion(delta : float):
 	var hDir = Input.get_action_strength("d") - Input.get_action_strength("a")
