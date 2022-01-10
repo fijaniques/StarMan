@@ -30,3 +30,5 @@ rect_scale = Vector2( 4, 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Position" type="Position2D" parent="GUI"]
