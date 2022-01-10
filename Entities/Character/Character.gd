@@ -8,6 +8,7 @@ var gravity : float = 1000
 var speed : float = 100
 var flyForce : float = -50
 var flySpeed : float = -500
+var jumpForce : float = -500
 var velocity = Vector2.ZERO
 
 var hVelocity : float = 0
@@ -25,6 +26,7 @@ func _ready():
 func _physics_process(delta : float) -> void:
 	_motion(delta)
 	_fly()
+	_jump()
 	_touch_input()
 
 func _motion(delta : float):
@@ -35,6 +37,11 @@ func _motion(delta : float):
 		velocity.y = gravity
 	
 	velocity = move_and_slide(velocity, UP)
+
+func _jump():
+	if(fuel <0):
+		if(Input.is_action_just_pressed("mouse") and is_on_floor()):
+			velocity.y = jumpForce
 
 func _fly():
 	if(Input.is_action_pressed("mouse") and fuel > 0):
