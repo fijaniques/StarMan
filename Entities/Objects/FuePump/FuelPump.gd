@@ -1,6 +1,7 @@
 extends Area2D
 
 onready var character = get_parent().get_node("Character")
+onready var text = $RichTextLabel
 
 var totalFuel : float = 30
 var fuel: float
@@ -12,6 +13,7 @@ func _ready():
 
 func _process(delta):
 	_filling()
+	_text_label()
 
 func _on_FuelPump_area_entered(area):
 	charIn = true
@@ -25,3 +27,6 @@ func _filling():
 			print(fuel)
 			character.fuel += 0.5
 			fuel -= 0.5
+
+func _text_label():
+	text.text = str(int(fuel))

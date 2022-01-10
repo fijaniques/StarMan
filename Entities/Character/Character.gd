@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 const UP = Vector2.UP
 onready var Pos2d = get_tree().current_scene.get_node("GUI/Position")
+var laser = preload("res://Entities/Traps/Laser/Laser.tscn")
 
 #MOVEMENT
 var gravity : float = 1000
@@ -10,6 +11,7 @@ var flyForce : float = -50
 var flySpeed : float = -500
 var jumpForce : float = -500
 var velocity = Vector2.ZERO
+var hp : int = 1
 
 var hVelocity : float = 0
 
@@ -18,7 +20,7 @@ var touchPos = Vector2.ZERO
 
 #FUEL
 var fuel : float
-var maxFuel : float = 50
+var maxFuel : float = 40
 
 func _ready():
 	fuel = maxFuel
@@ -28,6 +30,7 @@ func _physics_process(delta : float) -> void:
 	_fly()
 	_jump()
 	_touch_input()
+	_handle_hp()
 
 func _motion(delta : float):
 	velocity.x = (touchPos.x / 200) * speed
@@ -58,3 +61,14 @@ func _touch_input():
 	else:
 		touching = false
 		touchPos.x = 0
+
+func _handle_hp():
+	if(hp <= 0):
+		get_tree().reload_current_scene()
+
+func _on_PlayerArea_area_entered(area):
+	if(area.is_in_group("Traps")):
+		hp -= 1
+	
+	if(area.name == "Exit"):
+		get_tree().reload_current_scene()

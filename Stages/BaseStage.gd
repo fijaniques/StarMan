@@ -10,5 +10,4 @@ func _ready():
 	$GUI/Position.position = Vector2(midScreen, 0)
 
 func _process(delta):
-	GUI.get_node("Fuel").text = str(get_tree().current_scene.get_node("Character").fuel)
-
+	GUI.get_node("Fuel").text = str(int(get_tree().current_scene.get_node("Character").fuel))

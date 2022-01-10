@@ -18,5 +18,15 @@ texture = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = -16.5
+margin_top = -42.5
+margin_right = 23.5
+margin_bottom = -2.5
+rect_scale = Vector2( 2, 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="area_entered" from="." to="." method="_on_FuelPump_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_FuelPump_area_exited"]
