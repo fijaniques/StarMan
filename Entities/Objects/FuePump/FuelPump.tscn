@@ -1,10 +1,59 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Sprites/Square.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/FuelPump.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Objects/FuePump/FuelPump.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/FuelPumpFilling.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Filling"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Filling:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Filling:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Filling:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 4 ]
+}
 
 [node name="FuelPump" type="Area2D"]
 scale = Vector2( 2, 2 )
@@ -12,21 +61,27 @@ collision_layer = 2
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0, 1, 0.133333, 1 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
+hframes = 2
+vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = -16.5
-margin_top = -42.5
-margin_right = 23.5
-margin_bottom = -2.5
-rect_scale = Vector2( 2, 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Filling" type="Sprite" parent="."]
+position = Vector2( -8, -8 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+hframes = 2
+vframes = 3
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+anims/Filling = SubResource( 2 )
+anims/Idle = SubResource( 3 )
+anims/RESET = SubResource( 4 )
 
 [connection signal="area_entered" from="." to="." method="_on_FuelPump_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_FuelPump_area_exited"]

@@ -34,7 +34,7 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 position = Vector2( 992, 704 )
 
 [node name="Character" parent="." instance=ExtResource( 3 )]
-position = Vector2( 720, 1872 )
+position = Vector2( 984, 544 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 

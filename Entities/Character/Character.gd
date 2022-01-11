@@ -93,9 +93,14 @@ func _animation():
 			else:
 				animation.play("RunLeft")
 	else:
-		orangeParticles.emitting = true
-		yellowParticles.emitting = true
-		redParticles.emitting = true
+		if(fuel > 0):
+			orangeParticles.emitting = true
+			yellowParticles.emitting = true
+			redParticles.emitting = true
+		else:
+			orangeParticles.emitting = false
+			yellowParticles.emitting = false
+			redParticles.emitting = false
 		if(goingRight):
 			animation.play("FlyRight")
 		else:
